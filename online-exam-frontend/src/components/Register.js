@@ -18,7 +18,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/api/register", user, {
+      const response = await axios.post("https://examinationportal-production.up.railway.app/api/register", user, {
         headers: { "Content-Type": "application/json" },
       });
 
