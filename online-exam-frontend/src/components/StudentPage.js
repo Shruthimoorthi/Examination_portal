@@ -12,7 +12,7 @@ const StudentPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/exams")
+      .get("https://examinationportal-production.up.railway.app/api/exams")
       .then((response) => setExams(response.data))
       .catch((error) => console.error("Error fetching exams", error));
   }, []);
@@ -48,7 +48,7 @@ const StudentPage = () => {
   
     try {
       const response = await axios.post(
-        `http://localhost:8080/api/exams/${selectedExam.id}/certificate`,
+        `https://examinationportal-production.up.railway.app/api/exams/${selectedExam.id}/certificate`,
         payload
       );
       const { score, passed } = response.data;
