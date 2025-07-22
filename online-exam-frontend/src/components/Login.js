@@ -13,7 +13,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8080/api/login", user);
+      const res = await axios.post("https://examinationportal-production.up.railway.app/api/login", user);
       if (res.data.success) {
         localStorage.setItem("name", res.data.name);
         localStorage.setItem("email", res.data.email);
