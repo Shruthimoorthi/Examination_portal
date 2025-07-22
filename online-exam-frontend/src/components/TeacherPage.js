@@ -68,13 +68,13 @@ const TeacherPage = () => {
     };
     console.log("Creating Exam with:", examData);
     try {
-      await axios.post("http://localhost:8080/api/exams", examData);
+      await axios.post("https://examinationportal-production.up.railway.app/api/exams", examData);
       alert("Exam created successfully!");
       setExamTitle("");
       setQuestions([]);
 
       // Refresh exams
-      const res = await axios.get("http://localhost:8080/api/exams");
+      const res = await axios.get("https://examinationportal-production.up.railway.app/api/exams");
       const teacherEmail = localStorage.getItem("email");
       const updatedExams = res.data.filter(
         (exam) => exam.createdBy === teacherEmail
