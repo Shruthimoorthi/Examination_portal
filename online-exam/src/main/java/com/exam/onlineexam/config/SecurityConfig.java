@@ -24,7 +24,11 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOriginPattern("*");
+        config.setAllowedOriginPatterns(List.of(
+        "https://examination-portal-sable.vercel.app",
+        "https://examination-portal-git-main-shruthimoorthis-projects.vercel.app",
+        "https://examination-portal-q98hjh6mz-shruthimoorthis-projects.vercel.app"
+    ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
