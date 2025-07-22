@@ -2,22 +2,27 @@ package com.exam.onlineexam.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.web.SecurityFilterChain; //its a class
-
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
 @Configuration
 public class SecurityConfig {
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors(cors -> cors.disable()) // Enable CORS with default config
-                .csrf(csrf -> csrf.disable()) // Disable CSRF
+                .cors(cors -> cors.configurationSource(request -> {
+                    var config = new CorsConfiguration();
+                    config.setAllowCredentials(true);
+                    config.addAllowedOrigin("https://examination-portal-sable.vercel.app"); // your frontend URL
+                    config.addAllowedHeader("*");
+                    config.addAllowedMethod("*");
+                    return config;
+                }))
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll() // ✅ Allow all requests (for dev)
+                        .anyRequest().permitAll()
                 )
-
-                .formLogin(login -> login.disable()) // Disable form login
-                .httpBasic(basic -> basic.disable()); // Disable basic auth
+                .formLogin(login -> login.disable())
+                .httpBasic(basic -> basic.disable());
 
         return http.build();
     }
