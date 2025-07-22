@@ -9,19 +9,19 @@ const AdminPage = () => {
   useEffect(() => {
     // Fetch all users
     axios
-      .get("http://localhost:8080/api/users")
+      .get("https://examinationportal-production.up.railway.app/api/users")
       .then((res) => setUsers(res.data))
       .catch((err) => console.error("Error fetching users:", err));
 
     // Fetch all exams
     axios
-      .get("http://localhost:8080/api/exams")
+      .get("https://examinationportal-production.up.railway.app/api/exams")
       .then((res) => setExams(res.data))
       .catch((err) => console.error("Error fetching exams:", err));
 
     // Fetch all submissions (exam attempts)
     axios
-      .get("http://localhost:8080/api/submissions") // Ensure this endpoint exists and returns the necessary submission data
+      .get("https://examinationportal-production.up.railway.app/api/submissions") // Ensure this endpoint exists and returns the necessary submission data
       .then((res) => setSubmissions(res.data))
       .catch((err) => console.error("Error fetching submissions:", err));
   }, []);
